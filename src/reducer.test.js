@@ -44,7 +44,20 @@ describe('reducer', () => {
     expect(newState.guesses[newState.guesses.length-1]).toBe(guess);
   });
 
+  it('should return feedback with \'You\'re Ice Cold...\' ', () =>{
+    const guess = 5;
+    const state ={
+      guesses:[],
+      correctAnswer: 60
+    };
+    
+    const action = makeGuess(guess);
 
+    const newState = reducer(state, action);
+
+    expect(newState.feedback).toEqual('You\'re Ice Cold...');
+
+  });
 
 
 });//closes describe
