@@ -168,6 +168,5 @@ describe('reducer returns a valid state if state passed is undefined', ()=>{
     expect(newState.feedback).toEqual('Make your guess!');
     expect(newState.auralStatus).toEqual('');
     expect(newState.correctAnswer).toBeDefined();
-
   });
 });
