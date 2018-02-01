@@ -4,9 +4,8 @@ export const generateAuralUpdate = () => ({
 });
 
 export const RESTART_GAME = 'RESTART_GAME';
-export const restartGame = correctAnswer => ({
+export const restartGame = () => ({
     type: RESTART_GAME,
-    correctAnswer
 });
 
 export const MAKE_GUESS = 'MAKE_GUESS';

@@ -21,7 +21,7 @@ export function TopNav(props) {
                         aria-label="Start a new game"
                         onClick={() =>
                             props.dispatch(
-                                restartGame(Math.floor(Math.random() * 100) + 1)
+                                restartGame()
                             )}>
                         + New Game
                     </a>
