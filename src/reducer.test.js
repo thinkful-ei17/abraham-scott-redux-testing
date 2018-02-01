@@ -28,10 +28,24 @@ describe('reducer', () => {
       auralStatus: '',
       correctAnswer: correctAnswer 
     });
-
-
-
   });
+
+  it('auralStatus updates with state', ()=>{
+     const state = {
+       feedback: 'Bananas',
+       guesses: [1, 2, 3, 4]
+      }
+
+      const action = generateAuralUpdate();
+      const newState = reducer(state, action);
+      console.log('newState:', newState);
+     expect(newState.auralStatus).toContain(`Here's the status of the game right now: Bananas You've made 4 guesses`);
+  });
+});
+
+
+
+describe("reducer sets correct feedback", () => {
 
   it('should add a guess to the guesses array', ()=>{
     const guess = 10;
@@ -52,12 +66,82 @@ describe('reducer', () => {
     };
     
     const action = makeGuess(guess);
-
     const newState = reducer(state, action);
-
     expect(newState.feedback).toEqual('You\'re Ice Cold...');
 
   });
 
 
+  it('should return feedback with \'You\'re Cold...\' ', () => {
+    const guess = 5;
+    const state = {
+      guesses: [],
+      correctAnswer: 37
+    };
+    
+    const action = makeGuess(guess);
+    const newState = reducer(state, action);
+
+    expect(newState.feedback).toEqual('You\'re Cold...');
+
+  });
+
+  it("should return feedback with You're Warm.", () => {
+    const guess = 5;
+    const state = {
+      guesses: [],
+      correctAnswer: 25
+    };
+
+    const action = makeGuess(guess);
+    const newState = reducer(state, action);
+
+    expect(newState.feedback).toEqual("You're Warm.");
+  });
+
+  it("should return feedback with 'You\'re Hot!'", () => {
+    const guess = 5;
+    const state = {
+      guesses: [],
+      correctAnswer: 10
+    };
+
+    const action = makeGuess(guess);
+    const newState = reducer(state, action);
+
+    expect(newState.feedback).toEqual('You\'re Hot!');
+  });
+
+  it("should return feedback with 'You got it!'", () => {
+    const guess = 5;
+    const state = {
+      guesses: [],
+      correctAnswer: 5
+    };
+
+    const action = makeGuess(guess);
+    const newState = reducer(state, action);
+
+    expect(newState.feedback).toEqual('You got it!');
+  });
+
+
 });//closes describe
+
+describe('reducer passes the state if no action match', () => {
+  it('it should return original state object', () =>{
+
+      const state = {
+        guess: 100,
+        feedback: "You're Awesome"
+      };
+
+      const action = {
+          type: "@@@HEYHEYHEY"
+      };
+
+      const newState = reducer(state, action);
+      expect(newState).toBe(state);
+  });
+});
+
