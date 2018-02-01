@@ -8,17 +8,15 @@ describe('actions', () => {
     const guess = 34;
     const action = makeGuess(guess);
     expect(action).toEqual({
-       type: 'MAKE_GUESS',
-       guess: guess 
+      type: 'MAKE_GUESS',
+      guess: guess 
     });
   });
 
   it('should create a restartGame action', () => {
-    const correctAnswer = 34;
-    const action = restartGame(correctAnswer);
+    const action = restartGame();
     expect(action).toEqual({
       type: 'RESTART_GAME',
-      correctAnswer: correctAnswer
     });
   });
 
