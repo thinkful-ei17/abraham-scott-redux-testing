@@ -14,22 +14,19 @@ describe('reducer', () => {
   - We ca
   */
   it('it should reset the state to the initial state ', ()=>{
-    const correctAnswer = 15;
     const state = {
       guesses: [1,5,10,20],
       feedback: 'HOT',
       auralStatus: 'Hi',
-      correctAnswer: correctAnswer
+      correctAnswer: '27' 
     };
 
-    const action = restartGame(correctAnswer);
+    const action = restartGame();
     const resetState = reducer(state, action);
-    expect(resetState).toEqual({
-      guesses: [],
-      feedback: 'Make your guess!',
-      auralStatus: '',
-      correctAnswer: correctAnswer 
-    });
+    expect(resetState.guesses).toEqual([]);
+    expect(resetState.feedback).toEqual('Make your guess!');
+    expect(resetState.auralStatus).toEqual('');
+    expect(resetState.correctAnswer).toBeDefined();
   });
 
   it('auralStatus updates with state', ()=>{
